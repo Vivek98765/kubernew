@@ -24,17 +24,17 @@ export class TradeService {
     return this.tradesUpdated.asObservable();
   }
 
-  addPost(stockName: string, price: string, quantity: string, postDate: Date) {
-    const postData = new FormData();
-    postData.append("stockName", stockName);
-    postData.append("price", price);
-    postData.append("quantity", quantity);
-    //postData.append("image", imgpath, title);
-    postData.append("postDate", postDate.toString());
+  addPost(data) {
+    // const postData = new FormData();
+    // postData.append("stockName", stockName);
+    // postData.append("price", price);
+    // postData.append("quantity", quantity);
+    // //postData.append("image", imgpath, title);
+    // postData.append("postDate", postDate.toString());
     this.http
       .post<{ message: string; trade: Trade }>(
         BACKEND_URL,
-        postData
+        data
       )
       .subscribe(responseData => {
         this.err.next(null)

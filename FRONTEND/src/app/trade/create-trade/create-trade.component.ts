@@ -97,13 +97,8 @@ export class CreateTradeComponent implements OnInit {
     }
     this.isLoading = true;
     if (this.mode === "create") {
-      console.log(this.form.value);
-      this.ps.addPost(
-        this.form.value.stockName,
-        this.form.value.price,
-        this.form.value.quantity,
-        this.postdate
-      );
+      //console.log(this.form.value);
+      this.ps.addPost(this.form.value);
     }
     else {
       this.ps.updatePost(

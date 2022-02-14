@@ -8,14 +8,14 @@ const checkAuth = require("../middlewares/check-auth");
 router.post("",
 checkAuth,
     (req, res, next) => {
-        console.log(req.body);
+        //console.log(req.body);
         const trade = new Trade({
             stockName: req.body.stockName,
             price: req.body.price,
             quantity:req.body.quantity,
             //imagePath: url + "/images/" + req.file.filename,
             creator: req.userData.userId,
-            tradeDate: req.body.tradeDate,
+            tradeDate: new Date,
         })
         trade.save().
             then(trade => {
@@ -71,7 +71,7 @@ router.put(
 router.get("/mytrade", 
 checkAuth,
 (req, res, next) => {
-    Post.find({creator: req.userData.userId}).then(post => {
+    Trade.find({creator: req.userData.userId}).then(post => {
       if (post) {
         res.status(200).json({
             message: "Posts fetched successfully!",
@@ -87,7 +87,7 @@ checkAuth,
   
 
 router.get("", (req, res, next) => {
-    Post.find().then(documents => {
+    Trade.find().then(documents => {
         if(documents){
             res.status(200).json({
                 message: "Posts fetched successfully!",
@@ -101,7 +101,7 @@ router.get("", (req, res, next) => {
     });
 });
 router.get("/:id", (req, res, next) => {
-    Post.findById(req.params.id).then(post => {
+    Trade.findById(req.params.id).then(post => {
       if (post) {
         res.status(200).json(post);
       } else {
@@ -111,7 +111,7 @@ router.get("/:id", (req, res, next) => {
   });
   
   router.delete("/:id", checkAuth, (req, res, next) => {
-    Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
+    Trade.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
       result => {
         if (result.n > 0) {
           res.status(200).json({ message: "Deletion successful!" });

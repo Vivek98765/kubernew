@@ -65,6 +65,8 @@ export class MypostsComponent implements OnInit, OnDestroy {
   }
 
   getMyPost() {
+    console.log(this.userId);
+    
     this.ps.getMyPost(this.userId)
   }
 
