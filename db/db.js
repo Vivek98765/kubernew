@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-//const url = "mongodb://testuser:9eVH8YT0rVZ0X1uj@cluster0-shard-00-00.ecaql.mongodb.net:27017,cluster0-shard-00-01.ecaql.mongodb.net:27017,cluster0-shard-00-02.ecaql.mongodb.net:27017/BLOGAPP?ssl=true&replicaSet=atlas-ceza4t-shard-0&authSource=admin&retryWrites=true&w=majority"
-const url = "mongodb://localhost:27017/blogpost";   
+const url = "mongodb+srv://dev:devtest@cluster0.quj8h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+//const url = "mongodb://localhost:27017/blogpost";   
 // Connect MongoDB at default port 27017.
 let mong = mongoose.connect(url, {
     useNewUrlParser: true,
